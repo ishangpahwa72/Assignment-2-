@@ -1,0 +1,57 @@
+---
+title: "Assignment 2 _ Ishang Pahwa"
+author: "Ishang Pahwa"
+date: "2024-06-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This data set provides information on the fate of passengers on the fatal maiden voyage of the ocean liner ‘Titanic’, summarized according to economic status (class), sex, age and survival.
+
+```{r lib , include=FALSE}
+library(tidyverse)
+library(knitr)
+library(bslib)
+library(dplyr)
+```
+
+## Section 1
+```{r Titanic}
+Titanic<-as.data.frame(Titanic)
+head(Titanic,4)
+```
+
+## Section 2
+
+```{r clean}
+Titanic%>%
+  rename(Gender=Sex)%>%
+  filter(Survived == "Yes")%>%
+  arrange(Gender)
+  
+```
+## Section 3
+
+This dataframe has `r nrow(Titanic)` and `r ncol(Titanic)`. The names of the columns and a brief description of each are in the table below:
+
+```{r}
+Description<-data.frame(Names = c("Gender","Class"),
+                        Description = c("Male/Female","Coach Class of Passenger"))
+Description
+```
+## Section 4
+
+```{r}
+Titanicsubset<- Titanic %>% 
+  select(Age, Class, Freq)
+
+```
+
+```{r sum, include=TRUE}
+SummaryTable<-summary(Titanicsubset)
+SummaryTable
+
+```
